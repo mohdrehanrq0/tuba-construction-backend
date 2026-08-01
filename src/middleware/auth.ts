@@ -34,7 +34,7 @@ export function signToken(payload: JwtPayload) {
 export function setAuthCookie(res: Response, token: string) {
   res.cookie(COOKIE_NAME, token, {
     httpOnly: true,
-    sameSite: "lax",
+    sameSite: env.cookieSameSite,
     secure: env.cookieSecure,
     maxAge: 7 * 24 * 60 * 60 * 1000,
     path: "/",
@@ -44,7 +44,7 @@ export function setAuthCookie(res: Response, token: string) {
 export function clearAuthCookie(res: Response) {
   res.clearCookie(COOKIE_NAME, {
     httpOnly: true,
-    sameSite: "lax",
+    sameSite: env.cookieSameSite,
     secure: env.cookieSecure,
     path: "/",
   });

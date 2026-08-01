@@ -32,6 +32,7 @@ import wageRoutes from "./routes/wages.js";
 ensureAssetDirs();
 
 const app = express();
+app.set("trust proxy", 1);
 
 app.use(
   cors({

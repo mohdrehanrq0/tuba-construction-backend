@@ -21,7 +21,8 @@ export const env = {
   frontendUrl: process.env.FRONTEND_URL ?? "http://localhost:3000",
   /** Allowed browser origins for CORS (comma-separated in CORS_URL). */
   corsOrigins: parseCorsOrigins(),
-  cookieSecure: process.env.COOKIE_SECURE === "true",
+  cookieSecure: process.env.COOKIE_SECURE !== undefined ? process.env.COOKIE_SECURE === "true" : process.env.NODE_ENV === "production",
+  cookieSameSite: (process.env.COOKIE_SAME_SITE as "lax" | "strict" | "none" | undefined) ?? (process.env.NODE_ENV === "production" ? "none" : "lax"),
   smtp: {
     host: process.env.SMTP_HOST ?? "",
     port: Number(process.env.SMTP_PORT ?? 587),
